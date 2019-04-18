@@ -7,7 +7,10 @@ namespace RosettiRistorante.Data.IRepositories
 {
     interface IMealRepository
     {
-        List<Ingredient> GetIngredients();
-        List<IngredientStock> GetIngredientStocks();
+        List<Meal> GetMeals();
+        Meal GetMealById(int mealId);
+        void AddMeal(Meal meal);
+        void Delete(int mealId);
+        void UpdateMeal(Meal meal);
     }
 }

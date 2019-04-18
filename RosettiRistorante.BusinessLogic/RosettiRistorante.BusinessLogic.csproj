@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RosettiRistorante.Data\RosettiRistorante.Data.csproj" />
+    <ProjectReference Include="..\RosettiRistorante.Utils\RosettiRistorante.Utils.csproj" />
   </ItemGroup>
 
 </Project>

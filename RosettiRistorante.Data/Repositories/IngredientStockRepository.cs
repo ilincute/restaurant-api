@@ -17,9 +17,23 @@ namespace RosettiRistorante.Data.Repositories
             _databaseContext = databaseContext;
         }
 
-        public List<Ingredient> GetIngredients()
+        public void AddIngredientStock(IngredientStock ingredientStock)
         {
-            return _databaseContext.Ingredients.ToList();
+            _databaseContext.IngredientStocks.Add(ingredientStock);
+            _databaseContext.SaveChanges();
+        }
+
+        public void DeleteIngredientStock(int ingredientStockId)
+        {
+            var ingredientStock = _databaseContext.IngredientStocks.FirstOrDefault(i => i.Id == ingredientStockId);
+            _databaseContext.IngredientStocks.Remove(ingredientStock ?? throw new InvalidOperationException());
+            _databaseContext.SaveChanges();
+        }
+
+        public IngredientStock GetIngredientStock(int ingredientStockId)
+        {
+            var ingredientStock = _databaseContext.IngredientStocks.FirstOrDefault(i => i.Id == ingredientStockId);
+            return ingredientStock;
         }
 
         public List<IngredientStock> GetIngredientStocks()
@@ -27,9 +41,19 @@ namespace RosettiRistorante.Data.Repositories
             return _databaseContext.IngredientStocks.ToList();
         }
 
-        public List<IngredientSupplier> GetIngredientSuppliers()
+        public void UpdateIngredientStock(IngredientStock ingredientStock)
         {
-            return _databaseContext.IngredientSuppliers.ToList();
+            var ingredientStockUpdate =
+                _databaseContext.IngredientStocks.FirstOrDefault(i => i.Id == ingredientStock.Id);
+            if (ingredientStockUpdate != null)
+            {
+                ingredientStockUpdate.TotalAmount = ingredientStock.TotalAmount;
+                ingredientStockUpdate.Price = ingredientStock.Price;
+                ingredientStockUpdate.IngredientId = ingredientStock.IngredientId;
+                _databaseContext.IngredientStocks.Update(ingredientStockUpdate);
+            }
+
+            _databaseContext.SaveChanges();
         }
     }
 }

@@ -7,8 +7,10 @@ namespace RosettiRistorante.Data.IRepositories
 {
     interface IIngredientStockRepository
     {
-        List<Ingredient> GetIngredients();
         List<IngredientStock> GetIngredientStocks();
-        List<IngredientSupplier> GetIngredientSuppliers();
+        IngredientStock GetIngredientStock(int ingredientStockId);
+        void AddIngredientStock(IngredientStock ingredientStock);
+        void DeleteIngredientStock(int ingredientStockId);
+        void UpdateIngredientStock(IngredientStock ingredientStock);
     }
 }

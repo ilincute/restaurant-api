@@ -8,7 +8,9 @@ namespace RosettiRistorante.BusinessLogic.IServices
     public interface IIngredientService
     {
         List<Ingredient> GetIngredients();
-        List<IngredientStock> GetIngredientStocks();
-        List<IngredientSupplier> GetIngredientSuppliers();
+        Ingredient GetIngredientById(int ingredientId);
+        void AddIngredient(Ingredient ingredient);
+        void DeleteIngredient(int ingredientId);
+        void UpdateIngredient(Ingredient ingredient);
     }
 }

@@ -16,19 +16,31 @@ namespace RosettiRistorante.BusinessLogic.Services
             _ingredientsRepository = ingredientsRepository;
         }
 
+        public void AddIngredient(Ingredient ingredient)
+        {
+            _ingredientsRepository.AddIngredient(ingredient);
+        }
+
+        public void DeleteIngredient(int ingredientId)
+        {
+            _ingredientsRepository.DeleteIngredient(ingredientId);
+        }
+
+        public Ingredient GetIngredientById(int ingredientId)
+        {
+            var ingredient = _ingredientsRepository.GetIngredientById(ingredientId);
+            return ingredient;
+        }
+
         public List<Ingredient> GetIngredients()
         {
-            return _ingredientsRepository.GetIngredients();
+            var ingredients = _ingredientsRepository.GetIngredients();
+            return ingredients;
         }
 
-        public List<IngredientStock> GetIngredientStocks()
+        public void UpdateIngredient(Ingredient ingredient)
         {
-            return _ingredientsRepository.GetIngredientStocks();
-        }
-
-        public List<IngredientSupplier> GetIngredientSuppliers()
-        {
-            return _ingredientsRepository.GetIngredientSuppliers();
+            _ingredientsRepository.UpdateIngredient(ingredient);
         }
     }
 }

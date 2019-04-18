@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace RosettiRistorante.Data.Models
+namespace RosettiRistorante.API.ViewModels
 {
-    public class IngredientSupplier : BaseEntity
+    public class IngredientSupplierViewModel
     {
-        public Ingredient Ingredient { get; set; }
-
         public int IngredientId { get; set; }
 
         public decimal Price { get; set; }

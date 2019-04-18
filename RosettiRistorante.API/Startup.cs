@@ -37,6 +37,8 @@ namespace RosettiRistorante.API
 
             services.AddScoped<IIngredientRepository, IngredientRepository>();
             services.AddScoped<IIngredientService, IngredientService>();
+            services.AddScoped<IIngredientSupplierService, IngredientSupplierService>();
+            services.AddScoped<IIngredientSupplierRepository, IngredientSupplierRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

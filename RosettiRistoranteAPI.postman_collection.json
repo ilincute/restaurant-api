@@ -1,0 +1,147 @@
+{
+	"variables": [],
+	"info": {
+		"name": "RosettiRistoranteAPI",
+		"_postman_id": "6d6f32dd-a438-283a-d08a-974eff835383",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ingredients",
+			"description": "",
+			"item": [
+				{
+					"name": "GET Ingredients",
+					"request": {
+						"url": "https://localhost:44340/api/ingredients",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST New Ingredient",
+					"request": {
+						"url": "https://localhost:44340/api/ingredients",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"mere\",\n\t\"description\": \"din Polonia\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Ingredient",
+					"request": {
+						"url": "https://localhost:44340/api/ingredients/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"prune\",\n\t\"description\": \"coapte\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Ingredient",
+					"request": {
+						"url": "https://localhost:44340/api/ingredients/1",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IngredientSupplier",
+			"description": "",
+			"item": [
+				{
+					"name": "GET IngredientSupplier By SupplierId",
+					"request": {
+						"url": "https://localhost:44340/api/suppliers/1/ingredientsSupplier",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET IngredientSupplier By Id",
+					"request": {
+						"url": "https://localhost:44340/api/suppliers/1/ingredientsSupplier/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST New IngredientSupplier",
+					"request": {
+						"url": "https://localhost:44340/api/suppliers/1/ingredientsSupplier",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ingredientId\": 2,\n\t\"price\": 10,\n\t\"totalAmount\": 20,\n\t\"supplierId\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST OrderIngredients",
+					"request": {
+						"url": "https://localhost:44340/api/suppliers/1/orderIngredients",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ingredientSupplierId\": 1,\n\t\"amount\": 5\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

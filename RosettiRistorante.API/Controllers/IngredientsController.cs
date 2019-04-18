@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RosettiRistorante.API.ViewModels;
 using RosettiRistorante.BusinessLogic.IServices;
+using RosettiRistorante.Data.Models;
 
 namespace RosettiRistorante.API.Controllers
 {
@@ -25,36 +27,64 @@ namespace RosettiRistorante.API.Controllers
             return Ok(_ingredientService.GetIngredients());
         }
 
-//        // GET api/values
-//        [HttpGet]
-//        public ActionResult<IEnumerable<string>> Get()
-//        {
-//            return new string[] { "value1", "value2" };
-//        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        // GET api/ingredients/:ingredientId
+        [HttpGet("{ingredientId}")]
+        public ActionResult GetIngredients(int ingredientId)
         {
-            return "value";
+            return Ok(_ingredientService.GetIngredientById(ingredientId));
         }
 
-        // POST api/values
+        // POST api/ingredients
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult AddIngredient(IngredientViewModel ingredientViewModel)
         {
+            if (ingredientViewModel == null)
+            {
+                return BadRequest("Ingredient cannot be null.");
+            }
+
+            var ingredient = new Ingredient
+            {
+                Name = ingredientViewModel.Name,
+                Description = ingredientViewModel.Description
+            };
+
+
+            _ingredientService.AddIngredient(ingredient);
+            return StatusCode(201);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/ingredients/:ingredientId
+        [HttpPut("{ingredientId}")]
+        public ActionResult UpdateIngredient(int ingredientId, [FromBody] IngredientViewModel ingredientViewModel)
         {
+            var ingredient = _ingredientService.GetIngredientById(ingredientId);
+            if (ingredient == null)
+            {
+                return BadRequest("Invalid id.");
+            }
+
+            ingredient.Name = ingredientViewModel.Name;
+            ingredient.Description = ingredientViewModel.Description;
+
+            _ingredientService.UpdateIngredient(ingredient);
+
+            return StatusCode(204);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/ingredients/:ingredientId
+        [HttpDelete("{ingredientId}")]
+        public ActionResult DeleteIngredient(int ingredientId)
         {
+            var ingredient = _ingredientService.GetIngredientById(ingredientId);
+            if (ingredient == null)
+            {
+                return BadRequest("Invalid id.");
+            }
+
+            _ingredientService.DeleteIngredient(ingredientId);
+
+            return StatusCode(200);
         }
     }
 }
